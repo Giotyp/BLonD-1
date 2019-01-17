@@ -33,7 +33,7 @@ class Tracker():
     The user calls its track method.
     '''
 
-    def __init__(self, *stages):
+    def __init__(self, *stages, **kwargs):
         self.__pipeline = []
         self.__pipeline_names = []
         # self.__trackables = []
@@ -52,7 +52,7 @@ class Tracker():
             for currStage in self.__pipeline:
                 if _getOrder(currStage) > _getOrder(stage):
                     break
-                pos+=1
+                pos += 1
 
             if (getattr(stage, 'track', None) and callable(stage.track)):
                 self.__pipeline.insert(pos, stage.track)
@@ -64,7 +64,6 @@ class Tracker():
                 # TODO: Add logging
                 sys.exit(
                     '[Assembler]: Error, object of class {} is not callable or track()-able'.format(__getType(stage)))
-
 
     def __call__(self, *args, **kwargs):
         '''
@@ -167,8 +166,8 @@ class Assembler():
     def __init__(self):
         pass
 
-    def construct(self, **kwargs):
-        tracker = Tracker(**kwargs)
+    def construct(self, *args, **kwargs):
+        tracker = Tracker(*args, **kwargs)
         return tracker
 
 
@@ -201,9 +200,8 @@ class Stage(metaclass=abc.ABCMeta):
 #         print('[%s] Tracking turn: %d' % (type(self).__name__, kwargs['turn']))
 
 
-# assembler = Assembler()
+assembler = Assembler()
 
-# tracker = assembler.construct(profile=Profile(),
-#                               rfTracker=RFTracker(),
-#                               totalInducedVoltage=TotalInducedVoltage())
-# tracker.printPipeline()
+tracker = assembler.construct(
+    Profile(), RFTracker(), TotalInducedVoltage(), RFTracker())
+tracker.printPipeline()
