@@ -22,9 +22,9 @@ from ctypes import c_uint, c_double, c_void_p
 from scipy.constants import e
 from ..toolbox.next_regular import next_regular
 from ..utils import bmath as bm
+from ..utils.assembler import Stage
 
-
-class TotalInducedVoltage(object):
+class TotalInducedVoltage(Stage):
     r"""
     Object gathering all the induced voltage contributions. The input is a
     list of objects able to compute induced voltages (InducedVoltageTime,
@@ -135,7 +135,7 @@ class TotalInducedVoltage(object):
         #                     c_double(0.))
         #  
 
-class _InducedVoltage(object):
+class _InducedVoltage(Stage):
     r"""
     Induced voltage parent class. Only for internal use (inheritance), not to
     be directly instanciated.

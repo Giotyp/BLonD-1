@@ -96,7 +96,7 @@ plots = Plot(ring, rf, beam, dt_plt, N_t, 0, 0.0001763*h,
              format_options=format_options)
 
 # Accelerator map
-map_ = [long_tracker] + [profile] + [bunchmonitor] + [plots]
+map_ =  [profile] + [long_tracker] + [bunchmonitor] + [plots]
 print("Map set")
 print("")
 

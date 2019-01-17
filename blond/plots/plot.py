@@ -21,6 +21,7 @@ from ..plots.plot_beams import *
 from ..plots.plot_slices import *
 from ..plots.plot_llrf import *
 
+from ..utils.assembler import Stage
 
 def fig_folder(dirname):
     '''
@@ -39,7 +40,7 @@ def fig_folder(dirname):
 
 
 
-class Plot(object):
+class Plot(Stage):
     
     def __init__(self, Ring, RFStation, Beam, dt_plot,
                  dt_bckp, xmin, xmax, ymin, ymax, xunit = 's', sampling = 1, 

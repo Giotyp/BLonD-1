@@ -20,8 +20,9 @@ import ctypes
 from scipy.constants import e, c, epsilon_0, hbar
 from ..utils import bmath as bm
 
+from ..utils.assembler import Stage
 
-class SynchrotronRadiation(object):
+class SynchrotronRadiation(Stage):
     
     ''' Class to compute synchrotron radiation effects, including radiation
         damping and quantum excitation.

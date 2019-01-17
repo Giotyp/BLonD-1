@@ -20,11 +20,12 @@ import numpy as np
 from scipy.integrate import cumtrapz
 import ctypes
 import logging
+from ..utils.assembler import Stage
 
 from ..utils import bmath as bm
 
 
-class FullRingAndRF(object):
+class FullRingAndRF(Stage):
     """
     *Definition of the full ring and RF parameters in order to be able to have
     a full turn information (used in the hamiltonian for example).*
@@ -130,7 +131,7 @@ class FullRingAndRF(object):
             RingAndRFSectionElement.track()
 
 
-class RingAndRFTracker(object):
+class RingAndRFTracker(Stage):
     r""" Class taking care of basic particle coordinate tracking for a given
     RF station and the part of the ring until the next station, see figure.
 

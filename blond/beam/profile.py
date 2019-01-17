@@ -22,6 +22,8 @@ from scipy import ndimage
 import ctypes
 from ..toolbox import filters_and_fitting as ffroutines
 from ..utils import bmath as bm
+from ..utils.assembler import Stage
+
 
 class CutOptions(object):
     r"""
@@ -290,7 +292,7 @@ class OtherSlicesOptions(object):
         self.direct_slicing = direct_slicing
 
 
-class Profile(object):
+class Profile(Stage):
     """
     Contains the beam profile and related quantities including beam spectrum,
     profile derivative.

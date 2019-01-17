@@ -16,10 +16,10 @@
 from builtins import object
 import h5py as hp
 import numpy as np
+from ..utils.assembler import Stage
 
 
-
-class BunchMonitor(object):
+class BunchMonitor(Stage):
     
     ''' Class able to save bunch data into h5 file. Use 'buffer_time' to select 
         the frequency of saving to file in number of turns.
@@ -336,7 +336,7 @@ class BunchMonitor(object):
 
 
 
-class SlicesMonitor(object):
+class SlicesMonitor(Stage):
 
     ''' Class able to save the bunch profile, i.e. the histogram derived from
         the slicing.
