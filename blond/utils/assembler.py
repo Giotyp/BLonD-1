@@ -8,172 +8,6 @@ to simplify the main file design and eliminate various types of errors.
 
 import abc
 
-def _getType(obj):
-    return type(obj).__name__
-
-class Tracker():
-    '''
-    This is the master tracking object.
-    It is constructed by the assembler.
-    Tracker is responsible for the pipeline of the modules, respecting the
-    pre-defined order.
-    The user calls its track method.
-    '''
-    # __order = ['Profile', 'Tracking']
-
-
-
-    # @staticmethod
-    # def __getOrder(obj):
-    #     try:
-    #         order = Tracker.__order.index(Tracker.__getType(obj))
-    #     except ValueError as e:
-    #         order = len(Tracker.__order)
-    #     return order
-
-    def __init__(self, profile=None, rfTracker=None, totalInducedVoltage=None,
-                 beam=None, plots=None, ring=None, rfStation=None,
-                 bunchMonitor=None):
-        self.__pipeline = []
-        self.__pipeline_names = []
-        # self.__trackables = []
-        # self.__callables = []
-        self.turn = 0
-        self.profile = profile
-        self.rfTracker = rfTracker
-        self.totalInducedVoltage = totalInducedVoltage
-        self.beam = beam
-        self.ring = ring
-        self.bunchMonitor = bunchMonitor
-        self.rfStation = rfStation
-
-        if (profile):
-            self.__pipeline.append(profile.track)
-            self.__pipeline_names.append(_getType(profile))
-
-        if (totalInducedVoltage):
-            self.__pipeline.append(totalInducedVoltage.track)
-            self.__pipeline_names.append(_getType(totalInducedVoltage))
-
-        if (rfTracker):
-            self.__pipeline.append(rfTracker.track)
-            self.__pipeline_names.append(_getType(rfTracker))
-
-        if (bunchMonitor):
-            self.__pipeline.append(bunchMonitor.track)
-            self.__pipeline_names.append(_getType(bunchMonitor))
-
-        if (plots):
-            self.__pipeline.append(plots.track)
-            self.__pipeline_names.append(_getType(plots))
-
-
-    def __call__(self, *args, **kwargs):
-        '''
-        Makes the object callable.
-        '''
-        self.track(*args, **kwargs)
-
-
-    def printPipeline(self):
-        '''
-        Print the constructed pipeline
-        '''
-        # TODO: Add logging
-        string = '[Tracker] Pipeline:\n['
-        for stage_name in self.__pipeline_names:
-            string += stage_name + ' --> '
-        if '-->' in string:
-            string = string[:-len(' --> ')]
-        string += ']'
-        print(string)
-
-    def track(self, *args, **kwargs):
-        '''
-        Iterate over the callable objects in the pipeline.
-        '''
-        for stage in self.__pipeline:
-            stage(*args, **kwargs)
-
-        # Finally progress by 1 turn
-        self.turn += 1
-
-    def appendStage(self, stage):
-        '''
-        Add a new stage to the pipeline
-        '''
-        if (getattr(stage, 'track', None) and callable(stage.track)):
-            self.__pipeline.append(stage.track)
-            self.__pipeline_names.append(_getType(stage))
-        elif (callable(stage)):
-            self.__pipeline.append(stage)
-            self.__pipeline_names.append(stage.__name__)
-        else:
-            # TODO: Add logging
-            sys.exit(
-                '[Assembler]: Error, object of class {} is not callable or track()-able'.format(__getType(stage)))
-
-    # def insertStage(self, stage):
-    #     '''
-    #     Add a new stage to the pipeline
-    #     '''
-    #     if Tracker.__getType(stage) not in Tracker.__order:
-    #         print(("[Tracker] %s stage not recognised. It will be placed" +
-    #                " in the end of the pipeline") % Tracker.__getType(stage))
-    #     i = 0
-    #     for currStage in self.pipeline:
-    #         if Tracker.__getOrder(currStage) > Tracker.__getOrder(stage):
-    #             break
-    #         i+=1
-    #     self.pipeline.insert(i, stage)
-
-    #     return self
-
-    # def insertBefore(self, existingStage, newStage):
-    #     '''
-    #     Add new stage right before existingStage
-    #     '''
-    #     try:
-    #         pos = self.pipeline.index(existingStage)
-    #         self.pipeline.insert(pos, newStage)
-    #     except ValueError as e:
-    #         raise RuntimeError('[Tracker] %s stage not found in the pipiline' %
-    #                            Tracker.__getType(existingStage))
-    #     return self
-
-    # def insertAfter(self, existingStage, newStage):
-    #     '''
-    #     Add new stage right after existingStage
-    #     '''
-    #     try:
-    #         pos = self.pipeline.index(existingStage)
-    #         self.pipeline.insert(pos+1, newStage)
-    #     except ValueError as e:
-    #         raise RuntimeError('[Tracker] %s stage not found in the pipiline' %
-    #                             Tracker.__getType(existingStage))
-    #     return self
-
-    # def removeStage(self, stage):
-    #     '''
-    #     Remove (firs occurence of) stage from the pipeline
-    #     '''
-    #     try:
-    #         self.pipeline.remove(stage)
-    #     except ValueError as e:
-    #         raise RuntimeError('[Tracker] %s stage not found in the pipiline' %
-    #                            Tracker.__getType(stage))
-    #     return self
-
-
-class Assembler():
-
-    def __init__(self):
-        pass
-
-    def construct(self, **kwargs):
-        tracker = Tracker(**kwargs)
-        return tracker
-
 
 class Stage(metaclass=abc.ABCMeta):
     """
@@ -189,24 +23,197 @@ class Stage(metaclass=abc.ABCMeta):
         pass
 
 
-# class Profile(Stage):
-#     def track(self, *args, **kwargs):
-#         print('[%s] Tracking turn: %d' % (type(self).__name__, kwargs['turn']))
+class Profile(Stage):
+    def track(self, *args, **kwargs):
+        print('[%s] Tracking' % (type(self).__name__))
 
 
-# class RFTracker(Stage):
-#     def track(self, *args, **kwargs):
-#         print('[%s] Tracking turn: %d' % (type(self).__name__, kwargs['turn']))
+class TotalInducedVoltage(Stage):
+    def track(self, *args, **kwargs):
+        print('[%s] Tracking' % (type(self).__name__))
 
 
-# class TotalInducedVoltage(Stage):
-#     def track(self, *args, **kwargs):
-#         print('[%s] Tracking turn: %d' % (type(self).__name__, kwargs['turn']))
+class Plot(Stage):
+    def track(self, *args, **kwargs):
+        print('[%s] Tracking' % (type(self).__name__))
 
 
-# assembler = Assembler()
+class BunchMonitor(Stage):
+    def track(self, *args, **kwargs):
+        print('[%s] Tracking' % (type(self).__name__))
 
-# tracker = assembler.construct(profile=Profile(),
-#                               rfTracker=RFTracker(),
-#                               totalInducedVoltage=TotalInducedVoltage())
-# tracker.printPipeline()
+
+def kick(*args, **kwargs):
+    print('[%s] Tracking' % ('kick'))
+
+
+def linear_interp_kick(*args, **kwargs):
+    print('[%s] Tracking' % ('linear_interp_kick'))
+
+
+def drift(*args, **kwargs):
+    print('[%s] Tracking' % ('drift'))
+
+
+def rf_voltage_calculation(*args, **kwargs):
+    print('[%s] Tracking' % ('rf_voltage_calculation'))
+
+
+def _getType(obj):
+    return type(obj).__name__
+
+
+def _getOrder(obj):
+    try:
+        order = _order.index(_getType(obj))
+    except ValueError as e:
+        order = len(_order)
+    return order
+
+
+class Tracker():
+    '''
+    This is the master tracking object.
+    It is constructed by the assembler.
+    Tracker is responsible for the pipeline of the modules, respecting the
+    pre-defined order.
+    The user calls its track method.
+    '''
+
+    def __init__(self, *stages, **kwargs):
+        self.pipeline = []
+        self.turn = 0
+
+        stage_list = list(stages)
+
+        # 1st goest the profile
+        self.profile = self.add_stage(stage_list, class_str='Profile')
+
+        # then the induced voltage
+        self.totalInducedVoltage = self.add_stage(
+            stage_list, class_str='TotalInducedVoltage')
+
+        # the Beam FB
+        self.beamFeedback = self.add_stage(stage_list, class_str='BeamFeedback')
+
+        # Cacity FB
+        self.spsCavityFeedback = self.add_stage(
+            stage_list, class_str='SPSCavityFeedback')
+        self.spsOneTurnFeedback = self.add_stage(
+            stage_list, class_str='SPSOneTurnFeedback')
+
+        # Noise FB
+        self.lhcNoiseFB = self.add_stage(stage_list, class_str='LHCNoiseFB')
+
+        # the periodicity
+        # if (interpolation) or induced voltage or cavity FB then
+        if (self.totalInducedVoltage) or (self.spsCavityFeedback) or (self.spsOneTurnFeedback):
+            # the rf voltage caclulation
+            self.appendStage(rf_voltage_calculation)
+            self.appendStage(linear_interp_kick)
+        else:
+            self.appendStage(kick)
+
+        self.appendStage(drift)
+        # then the tracking
+        # then the tracking
+
+        # then monitors
+        self.bunchMonitor = self.add_stage(stage_list, class_str='BunchMonitor')
+
+        # finally the plots
+        self.plot = self.add_stage(stage_list, class_str='Plot')
+
+    def __call__(self, *args, **kwargs):
+        '''
+        Makes the object callable.
+        '''
+        self.track(*args, **kwargs)
+
+    # Check for the object of type class_str in the given stages, if found
+    # then add it to the pipeline, remove it from the stages and return true
+    # otherwise return false
+    # TODO stages should be a list
+
+    def add_stage(self, stages, class_str):
+        for i, stage in enumerate(list(stages)):
+            if _getType(stage) == class_str:
+                self.pipeline.append(stage.track)
+                # self.pipeline_names.append(stage.__name__)
+                return stages.pop(i)
+        return None
+
+    def printPipeline(self):
+        '''
+        Print the constructed pipeline
+        '''
+        # TODO: Add logging
+        string = '[Tracker] Pipeline: ['
+        for stage in self.pipeline:
+            if (getattr(stage, 'track', None) and callable(stage.track)):
+                string += '{}.track() --> '.format(_getType(stage))
+
+            elif (callable(stage)):
+                string += '{}() --> '.format(stage.__name__)
+            else:
+                # TODO: Add logging
+                sys.exit(
+                    '[Tracker]: Error, object of class {} is not callable or track()-able'.format(__getType(stage)))
+
+        if '-->' in string:
+            string = string[:-len(' --> ')]
+        string += ']'
+        # Logging here
+        print(string)
+
+    def track(self, *args, **kwargs):
+        '''
+        Iterate over the callable objects in the pipeline.
+        '''
+        for stage in self.pipeline:
+            stage(*args, **kwargs)
+
+        # Finally progress by 1 turn
+        self.turn += 1
+
+    def appendStage(self, stage):
+        '''
+        Add a new stage to the pipeline
+        '''
+        if (getattr(stage, 'track', None) and callable(stage.track)):
+            self.pipeline.append(stage.track)
+            # self.pipeline_names.append(_getType(stage))
+        elif (callable(stage)):
+            self.pipeline.append(stage)
+            # self.pipeline_names.append(stage.__name__)
+        else:
+            # TODO: Add logging
+            sys.exit(
+                '[Tracker]: Error, object of class {} is not callable or track()-able'.format(__getType(stage)))
+
+
+class Assembler():
+
+    def __init__(self):
+        pass
+
+    def construct(self, *args, **kwargs):
+        tracker = Tracker(*args, **kwargs)
+        return tracker
+
+
+
+if __name__ == '__main__':
+
+    assembler = Assembler()
+
+    print('\nTracker 1')
+    tracker = assembler.construct(
+        TotalInducedVoltage(), Plot(), Profile(), BunchMonitor())
+    tracker.printPipeline()
+
+
+    print('\nTracker 2')
+    tracker = assembler.construct(Plot(), Profile(), BunchMonitor())
+    tracker.printPipeline()
+    tracker.track()

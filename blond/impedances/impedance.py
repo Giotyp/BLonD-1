@@ -135,7 +135,7 @@ class TotalInducedVoltage(Stage):
         #                     c_double(0.))
         #  
 
-class _InducedVoltage(Stage):
+class _InducedVoltage(object):
     r"""
     Induced voltage parent class. Only for internal use (inheritance), not to
     be directly instanciated.

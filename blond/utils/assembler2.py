@@ -8,21 +8,8 @@ to simplify the main file design and eliminate various types of errors.
 
 import abc
 
-_order = ['Profile', 'TotalInducedVoltage', 'FullRingAndRF', 'RingAndRFTracker',
-          'BunchMonitor', 'Plot']
-
-
 def _getType(obj):
     return type(obj).__name__
-
-
-def _getOrder(obj):
-    try:
-        order = _order.index(_getType(obj))
-    except ValueError as e:
-        order = len(_order)
-    return order
-
 
 class Tracker():
     '''
@@ -32,44 +19,61 @@ class Tracker():
     pre-defined order.
     The user calls its track method.
     '''
+    # __order = ['Profile', 'Tracking']
 
-    def __init__(self, *stages, **kwargs):
+
+
+    # @staticmethod
+    # def __getOrder(obj):
+    #     try:
+    #         order = Tracker.__order.index(Tracker.__getType(obj))
+    #     except ValueError as e:
+    #         order = len(Tracker.__order)
+    #     return order
+
+    def __init__(self, profile=None, rfTracker=None, totalInducedVoltage=None,
+                 beam=None, plots=None, ring=None, rfStation=None,
+                 bunchMonitor=None):
         self.__pipeline = []
         self.__pipeline_names = []
         # self.__trackables = []
         # self.__callables = []
         self.turn = 0
-        # self.profile = profile
-        # self.rfTracker = rfTracker
-        # self.totalInducedVoltage = totalInducedVoltage
-        # self.beam = beam
-        # self.ring = ring
-        # self.bunchMonitor = bunchMonitor
-        # self.rfStation = rfStation
+        self.profile = profile
+        self.rfTracker = rfTracker
+        self.totalInducedVoltage = totalInducedVoltage
+        self.beam = beam
+        self.ring = ring
+        self.bunchMonitor = bunchMonitor
+        self.rfStation = rfStation
 
-        for stage in stages:
-            pos = 0
-            for currStage in self.__pipeline:
-                if _getOrder(currStage) > _getOrder(stage):
-                    break
-                pos += 1
+        if (profile):
+            self.__pipeline.append(profile.track)
+            self.__pipeline_names.append(_getType(profile))
 
-            if (getattr(stage, 'track', None) and callable(stage.track)):
-                self.__pipeline.insert(pos, stage.track)
-                self.__pipeline_names.append(_getType(stage))
-            elif (callable(stage)):
-                self.__pipeline.insert(pos, stage)
-                self.__pipeline_names.append(stage.__name__)
-            else:
-                # TODO: Add logging
-                sys.exit(
-                    '[Assembler]: Error, object of class {} is not callable or track()-able'.format(__getType(stage)))
+        if (totalInducedVoltage):
+            self.__pipeline.append(totalInducedVoltage.track)
+            self.__pipeline_names.append(_getType(totalInducedVoltage))
+
+        if (rfTracker):
+            self.__pipeline.append(rfTracker.track)
+            self.__pipeline_names.append(_getType(rfTracker))
+
+        if (bunchMonitor):
+            self.__pipeline.append(bunchMonitor.track)
+            self.__pipeline_names.append(_getType(bunchMonitor))
+
+        if (plots):
+            self.__pipeline.append(plots.track)
+            self.__pipeline_names.append(_getType(plots))
+
 
     def __call__(self, *args, **kwargs):
         '''
         Makes the object callable.
         '''
         self.track(*args, **kwargs)
+
 
     def printPipeline(self):
         '''
@@ -166,8 +170,8 @@ class Assembler():
     def __init__(self):
         pass
 
-    def construct(self, *args, **kwargs):
-        tracker = Tracker(*args, **kwargs)
+    def construct(self, **kwargs):
+        tracker = Tracker(**kwargs)
         return tracker
 
 
@@ -200,8 +204,9 @@ class Stage(metaclass=abc.ABCMeta):
 #         print('[%s] Tracking turn: %d' % (type(self).__name__, kwargs['turn']))
 
 
-assembler = Assembler()
+# assembler = Assembler()
 
-tracker = assembler.construct(
-    Profile(), RFTracker(), TotalInducedVoltage(), RFTracker())
-tracker.printPipeline()
+# tracker = assembler.construct(profile=Profile(),
+#                               rfTracker=RFTracker(),
+#                               totalInducedVoltage=TotalInducedVoltage())
+# tracker.printPipeline()

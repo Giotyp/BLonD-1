@@ -22,7 +22,7 @@ from ..utils import bmath as bm
 
 from ..utils.assembler import Stage
 
-class SynchrotronRadiation(Stage):
+class SynchrotronRadiation(object):
     
     ''' Class to compute synchrotron radiation effects, including radiation
         damping and quantum excitation.
