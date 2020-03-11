@@ -58,7 +58,7 @@ gamma_transition = 1/np.sqrt(0.00192)   # [1]
 C = 6911.56  # [m]
       
 # Tracking details
-n_turns = 2          
+n_turns = 10
 dt_plt = 1          
 
 # Derived parameters
@@ -195,7 +195,7 @@ plots_res = Plot(general_params_res, RF_sct_par_res, my_beam_res, dt_plt,
 
 # ACCELERATION MAP-------------------------------------------------------------
 
-map_ = [tot_vol] + [ring_RF_section] + [slice_beam] + [bunchmonitor] + [plots]
+map_ = [tot_vol] + [ring_RF_section] + [slice_beam]  + [plots]
 map_freq = [tot_vol_freq] + [ring_RF_section_freq] + [slice_beam_freq] \
     + [bunchmonitor_freq] + [plots_freq]
 map_res = [tot_vol_res] + [ring_RF_section_res] + [slice_beam_res] \
@@ -208,33 +208,33 @@ for i in np.arange(1, n_turns+1):
     print(i)
     for m in map_:
         m.track()
-    for m in map_freq:
-        m.track()
-    for m in map_res:
-        m.track()
+    # for m in map_freq:
+    #     m.track()
+    # for m in map_res:
+    #     m.track()
     
     # Plots
-    if (i % dt_plt) == 0:
-        plot_induced_voltage_vs_bin_centers(i, general_params, tot_vol,
-                                style='.', dirname=this_directory + '../output_files/EX_05_fig/1')
-        plot_induced_voltage_vs_bin_centers(i, general_params_freq,
-                  tot_vol_freq, style='.', dirname=this_directory + '../output_files/EX_05_fig/2')
-        plot_induced_voltage_vs_bin_centers(i, general_params_res,
-                  tot_vol_res, style='.', dirname=this_directory + '../output_files/EX_05_fig/3')
+    # if (i % dt_plt) == 0:
+    #     plot_induced_voltage_vs_bin_centers(i, general_params, tot_vol,
+    #                             style='.', dirname=this_directory + '../output_files/EX_05_fig/1')
+    #     plot_induced_voltage_vs_bin_centers(i, general_params_freq,
+    #               tot_vol_freq, style='.', dirname=this_directory + '../output_files/EX_05_fig/2')
+    #     plot_induced_voltage_vs_bin_centers(i, general_params_res,
+    #               tot_vol_res, style='.', dirname=this_directory + '../output_files/EX_05_fig/3')
 
 # Plotting induced voltages---------------------------------------------------
-plt.clf()
-plt.ylabel("induced voltage [arb. unit]")
-plt.xlabel("time [ns]")
-plt.plot(1e9*slice_beam.bin_centers,tot_vol.induced_voltage,label='Time')
-plt.plot(1e9*slice_beam_freq.bin_centers,tot_vol_freq.induced_voltage,\
-         label='Freq')
-plt.plot(1e9*slice_beam_res.bin_centers,tot_vol_res.induced_voltage,\
-         label='Resonator')
-plt.plot(1e9*slice_beam.bin_centers,VindGauss,label='Analytic')
-plt.legend()
-dirname=this_directory + '../output_files/EX_05_fig'
-fign = dirname +'/comparison_induced_voltage.png'
-plt.savefig(fign)
+# plt.clf()
+# plt.ylabel("induced voltage [arb. unit]")
+# plt.xlabel("time [ns]")
+# plt.plot(1e9*slice_beam.bin_centers,tot_vol.induced_voltage,label='Time')
+# plt.plot(1e9*slice_beam_freq.bin_centers,tot_vol_freq.induced_voltage,\
+#          label='Freq')
+# plt.plot(1e9*slice_beam_res.bin_centers,tot_vol_res.induced_voltage,\
+#          label='Resonator')
+# plt.plot(1e9*slice_beam.bin_centers,VindGauss,label='Analytic')
+# plt.legend()
+# dirname=this_directory + '../output_files/EX_05_fig'
+# fign = dirname +'/comparison_induced_voltage.png'
+# plt.savefig(fign)
 
 print("Done!")

@@ -56,7 +56,7 @@ gamma_transition = 4.4  # [1]
 C = 2 * np.pi * radius  # [m]       
       
 # Tracking details
-n_turns = 2         
+n_turns = 5         
 n_turns_between_two_plots = 1          
 
 # Derived parameters
@@ -162,7 +162,7 @@ plots = Plot(general_params, RF_sct_par, my_beam, 1, n_turns, 0,
 
 # ACCELERATION MAP-------------------------------------------------------------
 
-map_ = [total_induced_voltage] + [ring_RF_section] + [slice_beam] + [bunchmonitor] + [plots]
+map_ = [total_induced_voltage] + [ring_RF_section] + [slice_beam]  + [plots]
 
 # TRACKING + PLOTS-------------------------------------------------------------
 
