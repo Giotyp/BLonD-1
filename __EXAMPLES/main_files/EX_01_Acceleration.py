@@ -101,7 +101,8 @@ print("Map set")
 print("")
 
 # Tracking --------------------------------------------------------------------
-for i in range(1, N_t+1):
+# for i in range(1, N_t+1):
+for i in range(1, 2):
     
     
     # Plot has to be done before tracking (at least for cases with separatrix)

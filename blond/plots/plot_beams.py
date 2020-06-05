@@ -20,8 +20,12 @@ from ..trackers.utilities import separatrix
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
 
-plt.rcParams['font.family'] = 'DejaVu Sans Mono'
-plt.rcParams['text.usetex'] = True
+plt.rcParams['ps.useafm'] = True
+plt.rcParams['pdf.use14corefonts'] = True
+plt.rcParams['text.usetex'] = True #Let TeX do the typsetting
+# plt.rcParams['text.latex.preamble'] = [r'\usepackage{sansmath}', r'\sansmath'] #Force sans-serif math mode (for axes labels)
+plt.rcParams['font.family'] = 'sans-serif' # ... for regular text
+plt.rcParams['font.sans-serif'] = 'Helvetica'
 
 
 def plot_long_phase_space(Ring, RFStation, Beam, xmin,
@@ -33,7 +37,7 @@ def plot_long_phase_space(Ring, RFStation, Beam, xmin,
     Choice of units: xunit = s, rad.
     For large amount of data, use "sampling" to plot a fraction of the data.
     """
-    fontsize=14
+    fontsize = 12
     magnitude = 1e7
     ymin, ymax = -8, 8
     # Conversion from particle arrival time to RF phase
@@ -73,7 +77,7 @@ def plot_long_phase_space(Ring, RFStation, Beam, xmin,
                               s=1, edgecolor='none')
     elif xunit == 'rad':
         # axScatter.set_xlabel(r"$\varphi$ [rad]", fontsize=fontsize)
-        axScatter.set_xlabel(r"$\Delta t$ [s]", fontsize=fontsize, labelpad=1)
+        axScatter.set_xlabel(r"$\Delta t$ [s]", fontsize=fontsize, labelpad=2)
         # axScatter.scatter(omega_RF*Beam.dt[indalive] + phi_RF,
         #                   Beam.dE[indalive], s=1, edgecolor='none',
         #                   alpha=alpha, color=color)
@@ -103,7 +107,7 @@ def plot_long_phase_space(Ring, RFStation, Beam, xmin,
     axScatter.set_ylim(ymin, ymax)
 
     # axScatter.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
-    plt.figtext(0.95,0.85,'Turn: %d' %RFStation.counter[0],
+    plt.figtext(0.95, 0.85, 'Turn: %d' % RFStation.counter[0],
                 fontsize=14, ha='right', va='center')
 
     # Separatrix
@@ -122,17 +126,40 @@ def plot_long_phase_space(Ring, RFStation, Beam, xmin,
 
         xbin = (xmax - xmin)/200.
         xh = np.arange(xmin, xmax + xbin, xbin)
-        ybin = (ymax - ymin)/200.
-        yh = np.arange(ymin, ymax + ybin, ybin)
+        # ybin = (ymax - ymin)/200.
+        # yh = np.arange(ymin, ymax + ybin, ybin)
 
         if xunit == 's':
             axHistx.hist(Beam.dt[::sampling], bins=xh,
                          histtype='step', color=color)
         elif xunit == 'rad':
-            axHistx.hist(omega_RF*Beam.dt[::sampling]
-                         + phi_RF, bins=xh,
-                         density=True, histtype='step', color=color,
-                         lw=1.5)
+            # (n, bins, _) = axHistx.hist(omega_RF*Beam.dt[::sampling]
+            #                             + phi_RF, bins=xh,
+            #                             density=True, histtype='step', color=color,
+            #                             lw=1.)
+            (n, bins) = np.histogram(omega_RF*Beam.dt[::sampling]
+                                        + phi_RF, bins=xh,
+                                        density=True)
+
+
+            def running_mean(x, N):
+                cumsum = np.cumsum(np.insert(x, 0, 0))
+                return (cumsum[N:] - cumsum[:-N]) / float(N)
+
+            # ysmooth = running_mean(n, 5)
+
+            from scipy.signal import savgol_filter
+            # ysmooth = savgol_filter(n, 51, 3)
+            bins = (bins[1:] + bins[:-1]) / 2
+            axHistx.plot(bins[4:], running_mean(n, 5),
+                         lw=1.5, color=color)
+            xmin, xmax = bins[0], bins[-1]
+            # axHistx.plot(bins[9:], running_mean(n, 10),
+            #              lw=1.5, color='green')
+
+            # axHistx.plot(bins[1:], savgol_filter(n, 11, 3),
+            #              lw=1.5, color='green')
+
         # axHisty.hist(Beam.dE[::sampling], bins=yh, histtype='step',
         #              orientation='horizontal', color=color)
         # axHistx.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
@@ -141,6 +168,7 @@ def plot_long_phase_space(Ring, RFStation, Beam, xmin,
         plt.xticks([], [])
         plt.yticks([], [])
         # axHisty.axes.get_yaxis().set_visible(False)
+        # axHistx.set_xlim(xmin, xmax)
         axHistx.set_xlim(xmin, xmax)
         # axHistx.set_ylim(0, 2500)
         plt.yticks(fontsize=fontsize)
@@ -157,13 +185,13 @@ def plot_long_phase_space(Ring, RFStation, Beam, xmin,
     plt.tight_layout()
     plt.subplots_adjust(hspace=0.01)
 
-    for fign in [dirname + '/long_distr_'"%d" % RFStation.counter[0]+'.png']:
-                 # dirname + '/long_distr_'"%d" % RFStation.counter[0]+'.pdf']:
-    # fign = dirname + '/long_distr_'"%d" % RFStation.counter[0]+'.png'
-        plt.savefig(fign, bbox_inches='tight', dpi=600)
+    for fign in [dirname + '/long_distr_'"%.3d" % RFStation.counter[0]+'.png']:
+                 # dirname + '/long_distr_'"%.3d" % RFStation.counter[0]+'.pdf']:
+        plt.savefig(fign, bbox_inches='tight', dpi=200)
 
     # plt.savefig(fign, bbox_inches='tight')
     plt.clf()
+    plt.close()
 
 
 def plot_bunch_length_evol(RFStation, h5data, output_freq=1,

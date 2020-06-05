@@ -58,7 +58,7 @@ gamma_transition = 1/np.sqrt(0.00192)   # [1]
 C = 6911.56  # [m]
       
 # Tracking details
-n_turns = 10
+n_turns = 200
 dt_plt = 1          
 
 # Derived parameters
