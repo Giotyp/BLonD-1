@@ -213,7 +213,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">utils Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-blond.utils.bmath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bmath</span></code> Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-blond.utils.bphysics_wrap"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bphysics_wrap</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bphysics-wrap-module"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bphysics_wrap</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-blond.utils.butils_wrap"><code class="xref py py-mod docutils literal notranslate"><span class="pre">butils_wrap</span></code> Module</a></li>
 </ul>
 </li>
@@ -313,93 +313,26 @@ with the ones coming from butils_wrap.</p>
 <dd><p>Replace some bm functions with MPI implementations</p>
 </dd></dl>
 
+<dl class="py function">
+<dt id="blond.utils.bmath.use_precision">
+<code class="sig-prename descclassname">blond.utils.bmath.</code><code class="sig-name descname">use_precision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">_precision</span><span class="o">=</span><span class="default_value">'double'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bmath.use_precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="module-blond.utils.bphysics_wrap">
-<span id="bphysics-wrap-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bphysics_wrap</span></code> Module<a class="headerlink" href="#module-blond.utils.bphysics_wrap" title="Permalink to this headline">¶</a></h2>
-<p>BLonD physics wrapper functions</p>
-<p>&#64;author Konstantinos Iliakis
-&#64;date 20.10.2017</p>
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.beam_phase">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">beam_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bin_centers</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">omegarf</span></em>, <em class="sig-param"><span class="n">phirf</span></em>, <em class="sig-param"><span class="n">bin_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.beam_phase" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.drift">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">drift</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">solver</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">length_ratio</span></em>, <em class="sig-param"><span class="n">alpha_order</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">eta_1</span></em>, <em class="sig-param"><span class="n">eta_2</span></em>, <em class="sig-param"><span class="n">alpha_0</span></em>, <em class="sig-param"><span class="n">alpha_1</span></em>, <em class="sig-param"><span class="n">alpha_2</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">energy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.drift" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.fast_resonator">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">fast_resonator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">R_S</span></em>, <em class="sig-param"><span class="n">Q</span></em>, <em class="sig-param"><span class="n">frequency_array</span></em>, <em class="sig-param"><span class="n">frequency_R</span></em>, <em class="sig-param"><span class="n">impedance</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.fast_resonator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.kick">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">kick</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">voltage</span></em>, <em class="sig-param"><span class="n">omega_rf</span></em>, <em class="sig-param"><span class="n">phi_rf</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">n_rf</span></em>, <em class="sig-param"><span class="n">acceleration_kick</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.kick" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.linear_interp_kick">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">linear_interp_kick</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">voltage</span></em>, <em class="sig-param"><span class="n">bin_centers</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">acceleration_kick</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.linear_interp_kick" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.linear_interp_kick_n_drift">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">linear_interp_kick_n_drift</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">total_voltage</span></em>, <em class="sig-param"><span class="n">bin_centers</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">acc_kick</span></em>, <em class="sig-param"><span class="n">solver</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">length_ratio</span></em>, <em class="sig-param"><span class="n">alpha_order</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">eta_1</span></em>, <em class="sig-param"><span class="n">eta_2</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">energy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.linear_interp_kick_n_drift" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.linear_interp_time_translation">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">linear_interp_time_translation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ring</span></em>, <em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">turn</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.linear_interp_time_translation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.music_track">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">music_track</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">induced_voltage</span></em>, <em class="sig-param"><span class="n">array_parameters</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">omega_bar</span></em>, <em class="sig-param"><span class="n">const</span></em>, <em class="sig-param"><span class="n">coeff1</span></em>, <em class="sig-param"><span class="n">coeff2</span></em>, <em class="sig-param"><span class="n">coeff3</span></em>, <em class="sig-param"><span class="n">coeff4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.music_track" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.music_track_multiturn">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">music_track_multiturn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">induced_voltage</span></em>, <em class="sig-param"><span class="n">array_parameters</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">omega_bar</span></em>, <em class="sig-param"><span class="n">const</span></em>, <em class="sig-param"><span class="n">coeff1</span></em>, <em class="sig-param"><span class="n">coeff2</span></em>, <em class="sig-param"><span class="n">coeff3</span></em>, <em class="sig-param"><span class="n">coeff4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.music_track_multiturn" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.rf_volt_comp">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">rf_volt_comp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">voltages</span></em>, <em class="sig-param"><span class="n">omega_rf</span></em>, <em class="sig-param"><span class="n">phi_rf</span></em>, <em class="sig-param"><span class="n">bin_centers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.rf_volt_comp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.set_random_seed">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">set_random_seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.set_random_seed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.slice">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">slice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">beam_dt</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">cut_left</span></em>, <em class="sig-param"><span class="n">cut_right</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.slice" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.slice_smooth">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">slice_smooth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">beam_dt</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">cut_left</span></em>, <em class="sig-param"><span class="n">cut_right</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.slice_smooth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.synchrotron_radiation">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">synchrotron_radiation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">U0</span></em>, <em class="sig-param"><span class="n">n_kicks</span></em>, <em class="sig-param"><span class="n">tau_z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.synchrotron_radiation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="blond.utils.bphysics_wrap.synchrotron_radiation_full">
-<code class="sig-prename descclassname">blond.utils.bphysics_wrap.</code><code class="sig-name descname">synchrotron_radiation_full</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">U0</span></em>, <em class="sig-param"><span class="n">n_kicks</span></em>, <em class="sig-param"><span class="n">tau_z</span></em>, <em class="sig-param"><span class="n">sigma_dE</span></em>, <em class="sig-param"><span class="n">energy</span></em>, <em class="sig-param"><span class="n">random_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.bphysics_wrap.synchrotron_radiation_full" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="bphysics-wrap-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bphysics_wrap</span></code> Module<a class="headerlink" href="#bphysics-wrap-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-blond.utils.butils_wrap">
 <span id="butils-wrap-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">butils_wrap</span></code> Module<a class="headerlink" href="#module-blond.utils.butils_wrap" title="Permalink to this headline">¶</a></h2>
 <p>BLonD math wrapper functions</p>
 <p>&#64;author Konstantinos Iliakis
 &#64;date 20.10.2017</p>
+<dl class="py class">
+<dt id="blond.utils.butils_wrap.Precision">
+<em class="property">class </em><code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">Precision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">precision</span><span class="o">=</span><span class="default_value">'double'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.Precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="blond.utils.butils_wrap.add">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">result</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inplace</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.add" title="Permalink to this definition">¶</a></dt>
@@ -418,6 +351,11 @@ with the ones coming from butils_wrap.</p>
 <dl class="py function">
 <dt id="blond.utils.butils_wrap.argmin">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">argmin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.argmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.beam_phase">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">beam_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bin_centers</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">omegarf</span></em>, <em class="sig-param"><span class="n">phirf</span></em>, <em class="sig-param"><span class="n">bin_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.beam_phase" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -482,8 +420,18 @@ with the ones coming from butils_wrap.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt id="blond.utils.butils_wrap.drift">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">drift</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">solver</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">length_ratio</span></em>, <em class="sig-param"><span class="n">alpha_order</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">eta_1</span></em>, <em class="sig-param"><span class="n">eta_2</span></em>, <em class="sig-param"><span class="n">alpha_0</span></em>, <em class="sig-param"><span class="n">alpha_1</span></em>, <em class="sig-param"><span class="n">alpha_2</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">energy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.drift" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond.utils.butils_wrap.exp">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">exp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">result</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.exp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.fast_resonator">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">fast_resonator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">R_S</span></em>, <em class="sig-param"><span class="n">Q</span></em>, <em class="sig-param"><span class="n">frequency_array</span></em>, <em class="sig-param"><span class="n">frequency_R</span></em>, <em class="sig-param"><span class="n">impedance</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.fast_resonator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -507,6 +455,21 @@ with the ones coming from butils_wrap.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt id="blond.utils.butils_wrap.kick">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">kick</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">voltage</span></em>, <em class="sig-param"><span class="n">omega_rf</span></em>, <em class="sig-param"><span class="n">phi_rf</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">n_rf</span></em>, <em class="sig-param"><span class="n">acceleration_kick</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.kick" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.linear_interp_kick">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">linear_interp_kick</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">voltage</span></em>, <em class="sig-param"><span class="n">bin_centers</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">acceleration_kick</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.linear_interp_kick" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.linear_interp_kick_n_drift">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">linear_interp_kick_n_drift</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">total_voltage</span></em>, <em class="sig-param"><span class="n">bin_centers</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">acc_kick</span></em>, <em class="sig-param"><span class="n">solver</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">length_ratio</span></em>, <em class="sig-param"><span class="n">alpha_order</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">eta_1</span></em>, <em class="sig-param"><span class="n">eta_2</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">energy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.linear_interp_kick_n_drift" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond.utils.butils_wrap.linspace">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">linspace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">stop</span></em>, <em class="sig-param"><span class="n">num</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">retstep</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">result</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.linspace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -522,6 +485,21 @@ with the ones coming from butils_wrap.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt id="blond.utils.butils_wrap.music_track">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">music_track</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">induced_voltage</span></em>, <em class="sig-param"><span class="n">array_parameters</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">omega_bar</span></em>, <em class="sig-param"><span class="n">const</span></em>, <em class="sig-param"><span class="n">coeff1</span></em>, <em class="sig-param"><span class="n">coeff2</span></em>, <em class="sig-param"><span class="n">coeff3</span></em>, <em class="sig-param"><span class="n">coeff4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.music_track" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.music_track_multiturn">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">music_track_multiturn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">induced_voltage</span></em>, <em class="sig-param"><span class="n">array_parameters</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">omega_bar</span></em>, <em class="sig-param"><span class="n">const</span></em>, <em class="sig-param"><span class="n">coeff1</span></em>, <em class="sig-param"><span class="n">coeff2</span></em>, <em class="sig-param"><span class="n">coeff3</span></em>, <em class="sig-param"><span class="n">coeff4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.music_track_multiturn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.rf_volt_comp">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">rf_volt_comp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">voltages</span></em>, <em class="sig-param"><span class="n">omega_rf</span></em>, <em class="sig-param"><span class="n">phi_rf</span></em>, <em class="sig-param"><span class="n">bin_centers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.rf_volt_comp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond.utils.butils_wrap.rfft">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">rfft</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">result</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.rfft" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -532,13 +510,33 @@ with the ones coming from butils_wrap.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt id="blond.utils.butils_wrap.set_random_seed">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">set_random_seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.set_random_seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond.utils.butils_wrap.sin">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">sin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">result</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.sin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt id="blond.utils.butils_wrap.slice">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">slice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">cut_left</span></em>, <em class="sig-param"><span class="n">cut_right</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.slice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.slice_smooth">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">slice_smooth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">cut_left</span></em>, <em class="sig-param"><span class="n">cut_right</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.slice_smooth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond.utils.butils_wrap.sort">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">sort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">reverse</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.sort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.sparse_histogram">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">sparse_histogram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">profile</span></em>, <em class="sig-param"><span class="n">cut_left</span></em>, <em class="sig-param"><span class="n">cut_right</span></em>, <em class="sig-param"><span class="n">bunch_indexes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.sparse_histogram" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -549,6 +547,16 @@ with the ones coming from butils_wrap.</p>
 <dl class="py function">
 <dt id="blond.utils.butils_wrap.sum">
 <code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">sum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.synchrotron_radiation">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">synchrotron_radiation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">U0</span></em>, <em class="sig-param"><span class="n">n_kicks</span></em>, <em class="sig-param"><span class="n">tau_z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.synchrotron_radiation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond.utils.butils_wrap.synchrotron_radiation_full">
+<code class="sig-prename descclassname">blond.utils.butils_wrap.</code><code class="sig-name descname">synchrotron_radiation_full</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dE</span></em>, <em class="sig-param"><span class="n">U0</span></em>, <em class="sig-param"><span class="n">n_kicks</span></em>, <em class="sig-param"><span class="n">tau_z</span></em>, <em class="sig-param"><span class="n">sigma_dE</span></em>, <em class="sig-param"><span class="n">energy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond.utils.butils_wrap.synchrotron_radiation_full" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
