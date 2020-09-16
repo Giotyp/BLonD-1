@@ -47,11 +47,11 @@ install:
     else
         echo "Installing FFTW3.";
         wget http://www.fftw.org/fftw-3.3.8.tar.gz;
-        tar -xzvf fftw-3.3.8.tar.gz > /dev/null;
+        tar -xzvf fftw-3.3.8.tar.gz;
         cd fftw-3.3.8;
-        ./configure --prefix=$HOME/install/ --enable-openmp --enable-threads --enable-single --enable-sse2 --enable-avx --enable-avx2 --enable-fma --enable-avx-128-fma --with-our-malloc --disable-fortran --enable-shared > /dev/null;
-        make -j4 > /dev/null;
-        make install > /dev/null;
+        ./configure --prefix=$HOME/install/ --enable-openmp --enable-threads --enable-single --enable-sse2 --enable-avx --enable-avx2 --enable-fma --enable-avx-128-fma --with-our-malloc --disable-fortran --enable-shared;
+        make -j4;
+        make install;
     fi
   - cd $TRAVIS_BUILD_DIR
   - python -m pip install --upgrade pip setuptools wheel coverage coveralls pytest # cpp-coveralls
