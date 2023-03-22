@@ -45,7 +45,7 @@ parser.add_argument('-logdir', '--logdir', type=str, default='./logs/',
                     help='Directory to store the log files.'
                     '\nDefault: ./logs.')
 
-parser.add_argument('-time', '--time', type=str, choices=['disabled', 'timing', 'tracing'],
+parser.add_argument('-time', '--time', type=str, choices=['disabled', 'timing', 'tracing', 'cupy'],
                     default='disabled',
                     help='Time the specified regions of interest.'
                     '\nDefault: No timing.')
@@ -53,6 +53,10 @@ parser.add_argument('-time', '--time', type=str, choices=['disabled', 'timing', 
 parser.add_argument('-timedir', '--timedir', type=str, default='./timings/',
                     help='Directory to store the timing reports.'
                     '\nDefault: ./timings')
+
+parser.add_argument('-timefile', '--timefile', type=str, default='time_results.csv',
+                    help='File to store the timing reports.'
+                    '\nDefault: time_results.csv')
 
 parser.add_argument('-m', '--monitor', type=str, default=None,
                     help='Monitoring_interval,fist_turn,last_turn (0: no monitor).'

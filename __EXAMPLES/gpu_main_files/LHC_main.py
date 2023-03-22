@@ -282,8 +282,9 @@ print(f'Glob rank: [{worker.rank}], Node rank: [{worker.noderank}], GPU rank: [{
 
 worker.sync()
 timing.reset()
-start_t = time.time()
 
+timing.start_timing('LHC_main')
+start_t = time.time()
 
 for turn in range(n_iterations):
     # After the first 2/3 of the ramp, regulate down the bunch length
@@ -313,10 +314,12 @@ for turn in range(n_iterations):
 #beam.gather()
 
 end_t = time.time()
+timing.stop_timing()
 
+outfile = 'worker-{}.csv'.format(worker.rank) if args['timefile'] == None else args['timefile']
 timing.report(total_time=1e3*(end_t-start_t),
               out_dir=args['timedir'],
-              out_file='worker-{}.csv'.format(worker.rank))
+              out_file=outfile)
 
 worker.finalize()
 
